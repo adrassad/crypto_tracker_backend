@@ -1,7 +1,11 @@
 package com.adrassad.cryprice.auth.service;
 
-import org.springframework.security.core.userdetails.User;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import com.adrassad.cryprice.auth.dto.UserDto;
+import com.adrassad.cryprice.auth.model.User;
+import com.adrassad.cryprice.auth.repository.UserRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -13,7 +17,7 @@ public class UserService {
 
     public User register(UserDto userDto) {
         String hashedPassword = encoder.encode(userDto.getPassword());
-        User user = (User) User.builder()
+        User user = User.builder()
                 .username(userDto.getUsername())
                 .password(hashedPassword)
                 .build();
@@ -27,51 +31,6 @@ public class UserService {
             return user;
         } else {
             throw new RuntimeException("Invalid credentials");
-        }
-    }
-
-    private static class UserRepository {
-
-        public UserRepository() {
-        }
-
-        private java.util.Optional<User> findByUsername(String username) {
-            throw new UnsupportedOperationException("Not supported yet.");
-        }
-
-        private User save(User user) {
-            throw new UnsupportedOperationException("Not supported yet.");
-        }
-    }
-
-    private static class BCryptPasswordEncoder {
-
-        public BCryptPasswordEncoder() {
-        }
-
-        private boolean matches(String password, String password0) {
-            throw new UnsupportedOperationException("Not supported yet.");
-        }
-
-        private String encode(String password) {
-            throw new UnsupportedOperationException("Not supported yet.");
-        }
-    }
-
-    private static class UserDto {
-
-        private String username;
-        private String password;
-
-        public UserDto() {
-        }
-
-        public String getUsername() {
-            return username;
-        }
-
-        public String getPassword() {
-            return password;
         }
     }
 }
