@@ -1,4 +1,5 @@
-package com.adrassad.cryprice.auth.security;
+
+package com.adrassad.cryprice.config.security;
 
 import java.util.Date;
 
